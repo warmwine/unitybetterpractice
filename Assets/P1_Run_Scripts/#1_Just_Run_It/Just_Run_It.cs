@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Entrance : MonoBehaviour
+public class Just_Run_It : MonoBehaviour
 {
     protected int updatedTimes = 0;
 
