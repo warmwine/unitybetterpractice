@@ -1,8 +1,5 @@
 # UnityBetterPractice
 在学习Unity的时候发现，刚开始接触Unity还是有点障碍的。
-
-其使用时需要的理念和传统的OO思想很不一样。
-
 所以开了这个仓库，尝试吧学习过程当中遇到的细节点分类整理，每一个都建立几个example，供一起学习的人参考。
 
 * [github](https://github.com/warmwine/unitybetterpractice)
@@ -21,6 +18,7 @@
 ### 3. P3_Simple_2DMesh
 * 3.1 创建一个简单的矩形
 * 3.2 使用矩形渲染图片(纹理)
+* 3.3 创建一个圆形的网格
 ### 4. P4_Moving_Object
 * 4.1 使用设置坐标的方式来移动物体
 * 4.2 使用代码来模拟重力加速度
