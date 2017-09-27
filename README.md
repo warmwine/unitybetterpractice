@@ -6,7 +6,7 @@
 * [码云](https://gitee.com/warmwine/unitybetterpractice)
 
 -----
-## 目录
+## Practice目录
 
 ### 1. Practice_1_运行脚本
 * 1.1 程序入口
@@ -23,6 +23,15 @@
 * 4.2 使用代码来模拟重力加速度
 ### 5. Practice_5_碰撞
 * 5.1 简单碰撞
+
+
+-----
+## Game目录
+
+### 1. Game_1_是男人就坚持20秒
+* 1.1 基本Demo
+
+
 -----
 ## 计划中
 * 简单动画
