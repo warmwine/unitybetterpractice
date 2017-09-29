@@ -38,7 +38,11 @@ namespace G1_20Sec_1
             normals[2] = new Vector3(0, 0, -10);
             normals[3] = new Vector3(0, 0, -10);
             this.mesh.normals = normals;
+        }
 
+        void CreateCollider()
+        {
+            gameObject.AddComponent<BoxCollider2D>().size = new Vector2(1, 1);
         }
 
 
@@ -49,6 +53,7 @@ namespace G1_20Sec_1
         void Start()
         {
             this.CreatePlayer();
+            this.CreateCollider();
         }
     }
 }
