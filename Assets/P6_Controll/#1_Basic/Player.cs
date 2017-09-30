@@ -9,6 +9,8 @@ namespace G1_20Sec_1
         private Mesh mesh = null;
         private MeshRenderer meshRenderer = null;
 
+        public float speed = 0.2f;
+
         void CreatePlayer()
         {
             this.mesh = gameObject.AddComponent<MeshFilter>().mesh;//网格对象
@@ -43,6 +45,7 @@ namespace G1_20Sec_1
         void CreateCollider()
         {
             gameObject.AddComponent<BoxCollider2D>().size = new Vector2(1, 1);
+            gameObject.AddComponent<Rigidbody2D>().gravityScale = 0.0f;
         }
 
 
@@ -54,6 +57,64 @@ namespace G1_20Sec_1
         {
             this.CreatePlayer();
             this.CreateCollider();
+        }
+
+        /// <summary>
+        /// This function is called every fixed framerate frame, if the MonoBehaviour is enabled.
+        /// </summary>
+        void FixedUpdate()
+        {
+            float angel = 0.0f;
+            float moving = 1.0f;
+
+            if (Input.GetKey(KeyCode.A))
+            {
+                angel = Mathf.PI;
+                if (Input.GetKey(KeyCode.S))
+                {
+                    angel = angel + Mathf.PI * 0.25f;
+                }
+                if (Input.GetKey(KeyCode.W))
+                {
+                    angel = angel - Mathf.PI * 0.25f;
+                }
+            }
+            else if (Input.GetKey(KeyCode.D))
+            {
+                angel = 0.0f;
+                if (Input.GetKey(KeyCode.S))
+                {
+                    angel = Mathf.PI * 1.75f;
+                }
+                if (Input.GetKey(KeyCode.W))
+                {
+                    angel = Mathf.PI * 0.25f;
+                }
+            }
+            else
+            {
+                angel = 0.0f;
+                if (Input.GetKey(KeyCode.S))
+                {
+                    angel = Mathf.PI * 1.5f;
+                }
+                else if (Input.GetKey(KeyCode.W))
+                {
+                    angel = Mathf.PI * 0.5f;
+                }
+                else
+                {
+                    moving = 0.0f;
+                }
+            }
+
+
+            float cx = this.speed * Mathf.Cos(angel) * moving;
+            float cy = this.speed * Mathf.Sin(angel) * moving;
+            Vector3 pos = transform.position;
+            pos.x += cx;
+            pos.y += cy;
+            transform.position = pos;
         }
     }
 }
