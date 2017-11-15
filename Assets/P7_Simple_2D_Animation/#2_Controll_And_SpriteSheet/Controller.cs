@@ -4,24 +4,28 @@ using UnityEngine;
 
 enum Direction
 {
-    None,
-    Up,
-    Down,
-    Left,
-    Right,
+    None = 0,
+    Up = 2,
+    Down = 1,
+    Left = 3,
+    Right = 4,
 }
 
 public class Controller : MonoBehaviour
 {
+    float speed = 0.1f;
 
-    Direction direction = Direction.Down;
-    Direction walking = Direction.None;
+    Animator anim = null;
 
     // Use this for initialization
-    void Start()
+    /// <summary>
+    /// Awake is called when the script instance is being loaded.
+    /// </summary>
+    void Awake()
     {
-
+        this.anim = this.GetComponent<Animator>();
     }
+
 
     // Update is called once per frame
     void Update()
@@ -31,45 +35,71 @@ public class Controller : MonoBehaviour
 
     void FixedUpdate()
     {
+        int lr = 0;
+        int ud = 0;
         if (Input.GetKey(KeyCode.A))
         {
-            if (this.walking != Direction.Left)
+            if (Input.GetKey(KeyCode.S))
             {
-                this.direction = Direction.Left;
-                this.walking = Direction.Left;
-                Animator anim = this.GetComponent<Animator>();
-                anim.Play("walk_left");
+                lr = 0;
+                ud = -1;
+            }
+            else if (Input.GetKey(KeyCode.W))
+            {
+                lr = 0;
+                ud = 1;
+            }
+            else
+            {
+                lr = -1;
+                ud = 0;
             }
         }
         else if (Input.GetKey(KeyCode.D))
         {
-            if (this.walking != Direction.Right)
+            if (Input.GetKey(KeyCode.S))
             {
-                this.direction = Direction.Right;
-                this.walking = Direction.Right;
-                Animator anim = this.GetComponent<Animator>();
-                anim.Play("walk_right");
+                lr = 0;
+                ud = -1;
             }
-        }
-        else if (Input.GetKey(KeyCode.S))
-        {
-            if (this.walking != Direction.Down)
+            else if (Input.GetKey(KeyCode.W))
             {
-                this.direction = Direction.Down;
-                this.walking = Direction.Down;
+                lr = 0;
+                ud = 1;
             }
-        }
-        else if (Input.GetKey(KeyCode.W))
-        {
-            if (this.walking != Direction.Up)
+            else
             {
-                this.direction = Direction.Up;
-                this.walking = Direction.Up;
+                lr = 1;
+                ud = 0;
             }
         }
         else
         {
-
+            if (Input.GetKey(KeyCode.S))
+            {
+                lr = 0;
+                ud = -1;
+            }
+            else if (Input.GetKey(KeyCode.W))
+            {
+                lr = 0;
+                ud = 1;
+            }
+            else
+            {
+                lr = 0;
+                ud = 0;
+            }
         }
+
+        anim.SetInteger("VLeftRight", lr);
+        anim.SetInteger("VUpDown", ud);
+
+        float cx = this.speed * lr;
+        float cy = this.speed * ud;
+        Vector3 pos = transform.position;
+        pos.x += cx;
+        pos.y += cy;
+        transform.position = pos;
     }
 }
